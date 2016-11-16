@@ -14,6 +14,7 @@ var config = {
     loaders: [{
         include: DEV,
         loader: "babel",
+        
     }]
   }
 };

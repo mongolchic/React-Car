@@ -61,7 +61,7 @@
 
 	  render: function render() {
 	    var textStyle = {
-	      fontSize: 72,
+	      fontSize: 48,
 	      fontFamily: "sans-serif",
 	      color: "#333",
 	      fontWeight: "bold"
@@ -80,22 +80,104 @@
 
 	  getInitialState: function getInitialState() {
 	    return {
-	      speed: 0
+	      speed: 0,
+	      carInfo: "car"
 	    };
 	  },
 
-	  // componentDidMount: function (){
-	  //
-	  // }
+	  renderCar: function renderCar(e) {
+	    this.setState({
+	      carInfo: a + b
+	    });
+
+	    this._inputElement.value = "";
+
+	    e.preventDefault();
+	  },
+
+	  increase: function increase(e) {
+	    this.setState({
+	      speed: this.state.speed + 10
+	    });
+	  },
+
+	  decrease: function decrease(e) {
+	    if (this.state.speed < 7) {
+	      this.setState({
+	        speed: this.state.speed = 0
+	      });
+	    } else {
+	      this.setState({
+	        speed: this.state.speed - 7
+	      });
+	    }
+	  },
+
 	  render: function render() {
+	    var _this = this;
+
+	    var buttonStyle = {
+	      fontSize: "1em",
+	      width: 100,
+	      height: 30,
+	      fontFamily: "sans-serif",
+	      color: "#333",
+	      fontWeight: "bold"
+
+	    };
+
+	    var formStyle = {
+	      width: 200,
+	      height: 30,
+	      color: "#333",
+	      fontWeight: "bold",
+	      fontSize: 12
+	    };
+
 	    return _react2.default.createElement(
 	      "div",
 	      null,
+	      _react2.default.createElement(
+	        "h1",
+	        null,
+	        "Awesome Car Simulation App"
+	      ),
+	      _react2.default.createElement(
+	        "form",
+	        { onSubmit: this.renderCar },
+	        _react2.default.createElement("input", { ref: function ref(a) {
+	            return _this._inputElement = a;
+	          }, placeholder: "Enter car model and make", style: formStyle }),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement("input", { ref: function ref(b) {
+	            return _this._inputElement = b;
+	          }, placeholder: "Enter car year", style: formStyle }),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement(
+	          "button",
+	          { type: "submit", style: buttonStyle },
+	          "Create Car"
+	        )
+	      ),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement("br", null),
+	      "Your car is ",
+	      this.state.renderCar,
 	      _react2.default.createElement(Counter, { display: this.state.speed }),
+	      _react2.default.createElement("br", null),
 	      _react2.default.createElement(
 	        "button",
-	        null,
-	        "+"
+	        { onClick: this.increase, style: buttonStyle },
+	        "Accelerate"
+	      ),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement(
+	        "button",
+	        { onClick: this.decrease, style: buttonStyle },
+	        "Brake"
 	      )
 	    );
 	  }
