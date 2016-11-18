@@ -56,6 +56,8 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	// import "../index.css";
+
 	var Counter = _react2.default.createClass({
 	  displayName: "Counter",
 
@@ -75,24 +77,46 @@
 	  }
 	});
 
+	var MyCar = _react2.default.createClass({
+	  displayName: "MyCar",
+
+	  render: function render() {
+	    var carStyle = {
+	      fontSize: 36,
+	      fontFamily: "sans-serif",
+	      color: "#333",
+	      fontWeight: "bold"
+	    };
+
+	    return _react2.default.createElement(
+	      "div",
+	      { style: carStyle },
+	      this.props.carField
+	    );
+	  }
+	});
+
 	var Car = _react2.default.createClass({
 	  displayName: "Car",
 
 	  getInitialState: function getInitialState() {
 	    return {
 	      speed: 0,
-	      carInfo: "car"
+	      carField: '',
+	      carInfo: '',
+	      carLightsOn: false
 	    };
 	  },
 
-	  renderCar: function renderCar(e) {
+	  onChange: function onChange(e) {
 	    this.setState({
-	      carInfo: a + b
+	      carField: e.target.value
 	    });
+	  },
 
-	    this._inputElement.value = "";
-
+	  onSubmit: function onSubmit(e) {
 	    e.preventDefault();
+	    this.setState({ carField: '', carInfo: this.state.carField });
 	  },
 
 	  increase: function increase(e) {
@@ -114,16 +138,14 @@
 	  },
 
 	  render: function render() {
-	    var _this = this;
-
 	    var buttonStyle = {
 	      fontSize: "1em",
-	      width: 100,
+	      width: 200,
 	      height: 30,
 	      fontFamily: "sans-serif",
 	      color: "#333",
-	      fontWeight: "bold"
-
+	      fontWeight: "bold",
+	      margin: 10
 	    };
 
 	    var formStyle = {
@@ -131,12 +153,21 @@
 	      height: 30,
 	      color: "#333",
 	      fontWeight: "bold",
-	      fontSize: 12
+	      fontSize: 12,
+	      margin: 10
+	    };
+
+	    var spanStyle = {
+	      borderWidth: 10,
+	      borderHeight: 10,
+	      borderColor: 'black',
+	      borderStyle: 'solid'
+
 	    };
 
 	    return _react2.default.createElement(
 	      "div",
-	      null,
+	      { className: "container" },
 	      _react2.default.createElement(
 	        "h1",
 	        null,
@@ -144,27 +175,32 @@
 	      ),
 	      _react2.default.createElement(
 	        "form",
-	        { onSubmit: this.renderCar },
-	        _react2.default.createElement("input", { ref: function ref(a) {
-	            return _this._inputElement = a;
-	          }, placeholder: "Enter car model and make", style: formStyle }),
-	        _react2.default.createElement("br", null),
-	        _react2.default.createElement("br", null),
-	        _react2.default.createElement("input", { ref: function ref(b) {
-	            return _this._inputElement = b;
-	          }, placeholder: "Enter car year", style: formStyle }),
-	        _react2.default.createElement("br", null),
-	        _react2.default.createElement("br", null),
+	        { onSubmit: this.onSubmit, onChange: this.onChange, value: this.state.carField },
+	        _react2.default.createElement("input", { placeholder: "Enter car model and make", style: formStyle }),
 	        _react2.default.createElement(
 	          "button",
 	          { type: "submit", style: buttonStyle },
-	          "Create Car"
+	          "Build My Car Car"
 	        )
 	      ),
-	      _react2.default.createElement("br", null),
-	      _react2.default.createElement("br", null),
-	      "Your car is ",
-	      this.state.renderCar,
+	      _react2.default.createElement(
+	        "h3",
+	        null,
+	        "Your Car:"
+	      ),
+	      _react2.default.createElement(MyCar, { carField: this.state.carInfo }),
+	      _react2.default.createElement(
+	        "h2",
+	        null,
+	        this.state.renderCar
+	      ),
+	      _react2.default.createElement("hr", null),
+	      _react2.default.createElement(
+	        "h3",
+	        null,
+	        "Speedometer:"
+	      ),
+	      " ",
 	      _react2.default.createElement(Counter, { display: this.state.speed }),
 	      _react2.default.createElement("br", null),
 	      _react2.default.createElement(
@@ -172,13 +208,22 @@
 	        { onClick: this.increase, style: buttonStyle },
 	        "Accelerate"
 	      ),
-	      _react2.default.createElement("br", null),
-	      _react2.default.createElement("br", null),
 	      _react2.default.createElement(
 	        "button",
 	        { onClick: this.decrease, style: buttonStyle },
 	        "Brake"
-	      )
+	      ),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement("hr", null),
+	      _react2.default.createElement("span", { style: spanStyle }),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement("br", null),
+	      _react2.default.createElement(
+	        "p",
+	        null,
+	        "Switch Lights"
+	      ),
+	      _react2.default.createElement("input", { type: "radio", style: buttonStyle, value: "Lights On" })
 	    );
 	  }
 	});

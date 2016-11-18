@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+// import "../index.css";
 
 var Counter = React.createClass({
   render: function() {
@@ -19,22 +19,39 @@ var Counter = React.createClass({
   }
 });
 
+var MyCar = React.createClass({
+  render: function() {
+    var carStyle = {
+      fontSize: 36,
+      fontFamily: "sans-serif",
+      color: "#333",
+      fontWeight: "bold"
+    };
+
+    return <div style={carStyle}>{this.props.carField}</div>;
+  }
+});
+
 var Car = React.createClass({
   getInitialState: function () {
     return {
       speed: 0,
-      carInfo: "car"
+      carField: '',
+      carInfo: '',
+      carLightsOn: false
     };
   },
 
-  renderCar: function (e) {
+  onChange: function (e) {
      this.setState({
-       carInfo: a + b
+       carField: e.target.value
      });
 
-     this._inputElement.value = "";
+  },
 
-     e.preventDefault();
+  onSubmit: function (e) {
+    e.preventDefault();
+    this.setState({carField: '', carInfo: this.state.carField});
   },
 
   increase: function (e) {
@@ -59,12 +76,12 @@ var Car = React.createClass({
   render: function () {
     var buttonStyle = {
       fontSize: "1em",
-      width: 100,
+      width: 200,
       height: 30,
       fontFamily: "sans-serif",
       color: "#333",
       fontWeight: "bold",
-
+      margin: 10
     };
 
     var formStyle = {
@@ -73,30 +90,41 @@ var Car = React.createClass({
       color: "#333",
       fontWeight: "bold",
       fontSize: 12,
-    }
+      margin: 10
+    };
+
+    var spanStyle = {
+      borderWidth: 10,
+      borderHeight: 10,
+      borderColor: 'black',
+      borderStyle: 'solid',
+
+    };
+
 
     return (
-      <div>
-        <h1>Awesome Car Simulation App</h1>
-        <form onSubmit={this.renderCar}>
-          <input ref={(a) => this._inputElement = a} placeholder="Enter car model and make" style={formStyle}></input>
+        <div className="container">
+          <h1>Awesome Car Simulation App</h1>
+          <form onSubmit={this.onSubmit} onChange={this.onChange} value={this.state.carField}>
+            <input placeholder="Enter car model and make" style={formStyle}></input>
+            <button type="submit" style={buttonStyle}>Build My Car Car</button>
+          </form>
+          <h3>Your Car:</h3><MyCar carField={this.state.carInfo} />
+          <h2>{this.state.renderCar}</h2>
+          <hr/>
+          <h3>Speedometer:</h3> <Counter display={this.state.speed}/>
           <br></br>
-          <br></br>
-          <input ref={(b) => this._inputElement = b} placeholder="Enter car year" style={formStyle}></input>
-          <br></br>
-          <br></br>
-          <button type="submit" style={buttonStyle}>Create Car</button>
-        </form>
-        <br></br>
-        <br></br>
-        Your car is {this.state.renderCar}
-        <Counter display={this.state.speed}/>
-        <br></br>
-        <button onClick={this.increase} style={buttonStyle}>Accelerate</button>
-        <br></br>
-        <br></br>
-        <button onClick={this.decrease} style={buttonStyle}>Brake</button>
-      </div>
+          <button onClick={this.increase} style={buttonStyle}>Accelerate</button>
+          <button onClick={this.decrease} style={buttonStyle}>Brake</button>
+          <br/>
+          <hr/>
+          <span style={spanStyle}></span>
+          <br/>
+          <br/>
+          <p>Switch Lights</p>
+          <input type="radio" style={buttonStyle} value="Lights On"/>
+        </div>
+
     );
   }
 });
