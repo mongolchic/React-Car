@@ -94,9 +94,9 @@ var Car = React.createClass({
     };
 
     var spanStyle = {
-      borderWidth: 10,
-      borderHeight: 10,
-      borderColor: 'black',
+      borderWidth: 20,
+      borderHeight: 20,
+
       borderStyle: 'solid',
 
     };
@@ -121,8 +121,12 @@ var Car = React.createClass({
           <span style={spanStyle}></span>
           <br/>
           <br/>
-          <p>Switch Lights</p>
-          <input type="radio" style={buttonStyle} value="Lights On"/>
+          <form>
+            Switch On
+            <input type="radio" style={buttonStyle} value="Lights On"/>
+            Switch Off
+            <input type="radio" style={buttonStyle} value="Lights Off"/>
+          </form>
         </div>
 
     );

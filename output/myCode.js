@@ -158,9 +158,9 @@
 	    };
 
 	    var spanStyle = {
-	      borderWidth: 10,
-	      borderHeight: 10,
-	      borderColor: 'black',
+	      borderWidth: 20,
+	      borderHeight: 20,
+
 	      borderStyle: 'solid'
 
 	    };
@@ -219,11 +219,13 @@
 	      _react2.default.createElement("br", null),
 	      _react2.default.createElement("br", null),
 	      _react2.default.createElement(
-	        "p",
+	        "form",
 	        null,
-	        "Switch Lights"
-	      ),
-	      _react2.default.createElement("input", { type: "radio", style: buttonStyle, value: "Lights On" })
+	        "Switch On",
+	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, value: "Lights On" }),
+	        "Switch Off",
+	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, value: "Lights Off" })
+	      )
 	    );
 	  }
 	});
