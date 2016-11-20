@@ -91,7 +91,19 @@
 	    return _react2.default.createElement(
 	      "div",
 	      { style: carStyle },
-	      this.props.carField
+	      this.props.carForm
+	    );
+	  }
+	});
+
+	var Lights = _react2.default.createClass({
+	  displayName: "Lights",
+
+	  render: function render() {
+	    return _react2.default.createElement(
+	      "div",
+	      null,
+	      this.props.lightstatus
 	    );
 	  }
 	});
@@ -102,21 +114,21 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      speed: 0,
-	      carField: '',
+	      carForm: '',
 	      carInfo: '',
-	      carLightsOn: false
+	      carLights: 'Off'
 	    };
 	  },
 
 	  onChange: function onChange(e) {
 	    this.setState({
-	      carField: e.target.value
+	      carForm: e.target.value
 	    });
 	  },
 
 	  onSubmit: function onSubmit(e) {
 	    e.preventDefault();
-	    this.setState({ carField: '', carInfo: this.state.carField });
+	    this.setState({ carForm: '', carInfo: this.state.carForm });
 	  },
 
 	  increase: function increase(e) {
@@ -135,6 +147,15 @@
 	        speed: this.state.speed - 7
 	      });
 	    }
+	  },
+
+	  turnOn: function turnOn(e) {
+	    this.setState({ carLights: this.state.carLights = "On"
+	    });
+	  },
+	  turnOff: function turnOff(e) {
+	    this.setState({ carLights: this.state.carLights = "Off"
+	    });
 	  },
 
 	  render: function render() {
@@ -157,14 +178,6 @@
 	      margin: 10
 	    };
 
-	    var spanStyle = {
-	      borderWidth: 20,
-	      borderHeight: 20,
-
-	      borderStyle: 'solid'
-
-	    };
-
 	    return _react2.default.createElement(
 	      "div",
 	      { className: "container" },
@@ -175,7 +188,7 @@
 	      ),
 	      _react2.default.createElement(
 	        "form",
-	        { onSubmit: this.onSubmit, onChange: this.onChange, value: this.state.carField },
+	        { onSubmit: this.onSubmit, onChange: this.onChange, value: this.state.carForm },
 	        _react2.default.createElement("input", { placeholder: "Enter car model and make", style: formStyle }),
 	        _react2.default.createElement(
 	          "button",
@@ -188,12 +201,7 @@
 	        null,
 	        "Your Car:"
 	      ),
-	      _react2.default.createElement(MyCar, { carField: this.state.carInfo }),
-	      _react2.default.createElement(
-	        "h2",
-	        null,
-	        this.state.renderCar
-	      ),
+	      _react2.default.createElement(MyCar, { carForm: this.state.carInfo }),
 	      _react2.default.createElement("hr", null),
 	      _react2.default.createElement(
 	        "h3",
@@ -215,16 +223,19 @@
 	      ),
 	      _react2.default.createElement("br", null),
 	      _react2.default.createElement("hr", null),
-	      _react2.default.createElement("span", { style: spanStyle }),
-	      _react2.default.createElement("br", null),
-	      _react2.default.createElement("br", null),
+	      _react2.default.createElement(
+	        "h3",
+	        null,
+	        "Headlights: ",
+	        _react2.default.createElement(Lights, { lightstatus: this.state.carLights })
+	      ),
 	      _react2.default.createElement(
 	        "form",
 	        null,
-	        "Switch On",
-	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, value: "Lights On" }),
-	        "Switch Off",
-	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, value: "Lights Off" })
+	        "On",
+	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOn, value: "On" }),
+	        "Off",
+	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOff, value: "Off" })
 	      )
 	    );
 	  }

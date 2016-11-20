@@ -28,7 +28,17 @@ var MyCar = React.createClass({
       fontWeight: "bold"
     };
 
-    return <div style={carStyle}>{this.props.carField}</div>;
+    return <div style={carStyle}>{this.props.carForm}</div>;
+  }
+});
+
+var Lights = React.createClass({
+  render: function() {
+    return (
+      <div>
+        {this.props.lightstatus}
+      </div>
+    );
   }
 });
 
@@ -36,22 +46,22 @@ var Car = React.createClass({
   getInitialState: function () {
     return {
       speed: 0,
-      carField: '',
+      carForm: '',
       carInfo: '',
-      carLightsOn: false
+      carLights: 'Off'
     };
   },
 
   onChange: function (e) {
      this.setState({
-       carField: e.target.value
+       carForm: e.target.value
      });
 
   },
 
   onSubmit: function (e) {
     e.preventDefault();
-    this.setState({carField: '', carInfo: this.state.carField});
+    this.setState({carForm: '', carInfo: this.state.carForm});
   },
 
   increase: function (e) {
@@ -70,6 +80,15 @@ var Car = React.createClass({
         speed: this.state.speed - 7
      });
     }
+  },
+
+  turnOn: function(e){
+    this.setState({carLights: this.state.carLights = "On"
+    });
+  },
+  turnOff: function(e){
+    this.setState({carLights: this.state.carLights = "Off"
+    });
   },
 
 
@@ -93,24 +112,15 @@ var Car = React.createClass({
       margin: 10
     };
 
-    var spanStyle = {
-      borderWidth: 20,
-      borderHeight: 20,
-
-      borderStyle: 'solid',
-
-    };
-
 
     return (
         <div className="container">
           <h1>Awesome Car Simulation App</h1>
-          <form onSubmit={this.onSubmit} onChange={this.onChange} value={this.state.carField}>
+          <form onSubmit={this.onSubmit} onChange={this.onChange} value={this.state.carForm}>
             <input placeholder="Enter car model and make" style={formStyle}></input>
             <button type="submit" style={buttonStyle}>Build My Car Car</button>
           </form>
-          <h3>Your Car:</h3><MyCar carField={this.state.carInfo} />
-          <h2>{this.state.renderCar}</h2>
+          <h3>Your Car:</h3><MyCar carForm={this.state.carInfo} />
           <hr/>
           <h3>Speedometer:</h3> <Counter display={this.state.speed}/>
           <br></br>
@@ -118,14 +128,10 @@ var Car = React.createClass({
           <button onClick={this.decrease} style={buttonStyle}>Brake</button>
           <br/>
           <hr/>
-          <span style={spanStyle}></span>
-          <br/>
-          <br/>
+          <h3>Headlights: <Lights lightstatus={this.state.carLights}/></h3>
           <form>
-            Switch On
-            <input type="radio" style={buttonStyle} value="Lights On"/>
-            Switch Off
-            <input type="radio" style={buttonStyle} value="Lights Off"/>
+            On<input type="radio" style={buttonStyle} onChange={this.turnOn} value="On"/>
+            Off<input type="radio"  style={buttonStyle} onChange={this.turnOff} value="Off"/>
           </form>
         </div>
 
