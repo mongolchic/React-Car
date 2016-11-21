@@ -56,8 +56,6 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import "../index.css";
-
 	var Counter = _react2.default.createClass({
 	  displayName: "Counter",
 
@@ -132,9 +130,11 @@
 	  },
 
 	  increase: function increase(e) {
-	    this.setState({
-	      speed: this.state.speed + 10
-	    });
+	    if (this.state.speed < 120) {
+	      this.setState({
+	        speed: this.state.speed + 10
+	      });
+	    }
 	  },
 
 	  decrease: function decrease(e) {
@@ -153,6 +153,7 @@
 	    this.setState({ carLights: this.state.carLights = "On"
 	    });
 	  },
+
 	  turnOff: function turnOff(e) {
 	    this.setState({ carLights: this.state.carLights = "Off"
 	    });
@@ -178,64 +179,78 @@
 	      margin: 10
 	    };
 
+	    var bodyStyle = {
+	      backgroundImage: 'url(http://drivetosavelives.com/wp-content/uploads/2014/08/SummerDrivingTipsforTeens.jpg)',
+	      height: 800,
+	      opacity: 0.8
+	    };
+	    var containerStyle = {
+	      backgroundImage: 'url(http://www.webdesigndev.com/wp-content/uploads/2013/06/Subtle-Grey-Tileable-Pattern.jpg)'
+	    };
+
 	    return _react2.default.createElement(
 	      "div",
-	      { className: "container" },
+	      { style: bodyStyle },
 	      _react2.default.createElement(
-	        "h1",
-	        null,
-	        "Awesome Car Simulation App"
-	      ),
-	      _react2.default.createElement(
-	        "form",
-	        { onSubmit: this.onSubmit, onChange: this.onChange, value: this.state.carForm },
-	        _react2.default.createElement("input", { placeholder: "Enter car model and make", style: formStyle }),
+	        "div",
+	        { className: "container", style: containerStyle },
+	        _react2.default.createElement(
+	          "h1",
+	          null,
+	          "Awesome Car Simulation App"
+	        ),
+	        _react2.default.createElement("hr", null),
+	        _react2.default.createElement(
+	          "form",
+	          { onSubmit: this.onSubmit, onChange: this.onChange, value: this.state.carForm },
+	          _react2.default.createElement("input", { placeholder: "Enter car model and make", style: formStyle }),
+	          _react2.default.createElement(
+	            "button",
+	            { type: "submit", style: buttonStyle },
+	            "Build My Car Car"
+	          )
+	        ),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Your Car:"
+	        ),
+	        _react2.default.createElement(MyCar, { carForm: this.state.carInfo }),
+	        _react2.default.createElement("hr", null),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Speedometer(mph):"
+	        ),
+	        " ",
+	        _react2.default.createElement(Counter, { display: this.state.speed }),
+	        _react2.default.createElement("br", null),
 	        _react2.default.createElement(
 	          "button",
-	          { type: "submit", style: buttonStyle },
-	          "Build My Car Car"
+	          { onClick: this.increase, style: buttonStyle },
+	          "Accelerate"
+	        ),
+	        _react2.default.createElement(
+	          "button",
+	          { onClick: this.decrease, style: buttonStyle },
+	          "Brake"
+	        ),
+	        _react2.default.createElement("br", null),
+	        _react2.default.createElement("hr", null),
+	        _react2.default.createElement(
+	          "h3",
+	          null,
+	          "Headlights: ",
+	          _react2.default.createElement(Lights, { lightstatus: this.state.carLights })
+	        ),
+	        _react2.default.createElement(
+	          "form",
+	          null,
+	          "On",
+	          _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOn, value: "On", name: "Lights" }),
+	          "Off",
+	          _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOff, value: "Off", name: "Lights" })
 	        )
-	      ),
-	      _react2.default.createElement(
-	        "h3",
-	        null,
-	        "Your Car:"
-	      ),
-	      _react2.default.createElement(MyCar, { carForm: this.state.carInfo }),
-	      _react2.default.createElement("hr", null),
-	      _react2.default.createElement(
-	        "h3",
-	        null,
-	        "Speedometer:"
-	      ),
-	      " ",
-	      _react2.default.createElement(Counter, { display: this.state.speed }),
-	      _react2.default.createElement("br", null),
-	      _react2.default.createElement(
-	        "button",
-	        { onClick: this.increase, style: buttonStyle },
-	        "Accelerate"
-	      ),
-	      _react2.default.createElement(
-	        "button",
-	        { onClick: this.decrease, style: buttonStyle },
-	        "Brake"
-	      ),
-	      _react2.default.createElement("br", null),
-	      _react2.default.createElement("hr", null),
-	      _react2.default.createElement(
-	        "h3",
-	        null,
-	        "Headlights: ",
-	        _react2.default.createElement(Lights, { lightstatus: this.state.carLights })
-	      ),
-	      _react2.default.createElement(
-	        "form",
-	        null,
-	        "On",
-	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOn, value: "On" }),
-	        "Off",
-	        _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOff, value: "Off" })
 	      )
 	    );
 	  }
