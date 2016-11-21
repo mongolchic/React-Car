@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-// import "../index.css";
+
 
 var Counter = React.createClass({
   render: function() {
@@ -42,6 +42,7 @@ var Lights = React.createClass({
   }
 });
 
+
 var Car = React.createClass({
   getInitialState: function () {
     return {
@@ -65,9 +66,11 @@ var Car = React.createClass({
   },
 
   increase: function (e) {
+    if  (this.state.speed < 120) {
     this.setState({
       speed: this.state.speed + 10
     });
+  }
   },
 
   decrease: function (e) {
@@ -83,9 +86,10 @@ var Car = React.createClass({
   },
 
   turnOn: function(e){
-    this.setState({carLights: this.state.carLights = "On"
-    });
+      this.setState({carLights: this.state.carLights = "On"
+      });
   },
+
   turnOff: function(e){
     this.setState({carLights: this.state.carLights = "Off"
     });
@@ -112,29 +116,40 @@ var Car = React.createClass({
       margin: 10
     };
 
+    var bodyStyle = {
+      backgroundImage: 'url(http://drivetosavelives.com/wp-content/uploads/2014/08/SummerDrivingTipsforTeens.jpg)',
+      height: 800,
+      opacity: 0.8
+    };
+     var containerStyle = {
+       backgroundImage: 'url(http://www.webdesigndev.com/wp-content/uploads/2013/06/Subtle-Grey-Tileable-Pattern.jpg)',
+    };
+
 
     return (
-        <div className="container">
+      <div style={bodyStyle}>
+        <div className="container" style={containerStyle}>
           <h1>Awesome Car Simulation App</h1>
+          <hr/>
           <form onSubmit={this.onSubmit} onChange={this.onChange} value={this.state.carForm}>
             <input placeholder="Enter car model and make" style={formStyle}></input>
             <button type="submit" style={buttonStyle}>Build My Car Car</button>
           </form>
           <h3>Your Car:</h3><MyCar carForm={this.state.carInfo} />
           <hr/>
-          <h3>Speedometer:</h3> <Counter display={this.state.speed}/>
+          <h3>Speedometer(mph):</h3> <Counter display={this.state.speed}/>
           <br></br>
           <button onClick={this.increase} style={buttonStyle}>Accelerate</button>
           <button onClick={this.decrease} style={buttonStyle}>Brake</button>
-          <br/>
+          <br></br>
           <hr/>
           <h3>Headlights: <Lights lightstatus={this.state.carLights}/></h3>
           <form>
-            On<input type="radio" style={buttonStyle} onChange={this.turnOn} value="On"/>
-            Off<input type="radio"  style={buttonStyle} onChange={this.turnOff} value="Off"/>
-          </form>
+            On<input type="radio" style={buttonStyle} onChange={this.turnOn} value="On" name="Lights"/>
+            Off<input type="radio"  style={buttonStyle} onChange={this.turnOff} value="Off" name="Lights"/>
+            </form>
         </div>
-
+      </div>
     );
   }
 });
