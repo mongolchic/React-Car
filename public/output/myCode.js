@@ -180,12 +180,8 @@
 	    };
 
 	    var bodyStyle = {
-	      backgroundImage: 'url(http://eskipaper.com/images/toy-car-background-1.jpg)',
-	      height: 1200,
-	      opacity: 0.8
-	    };
-	    var containerStyle = {
-	      backgroundImage: 'url(http://www.findingtherainbow.net/wp-content/uploads/2015/06/light_blue_parchment_paper_background_1800x1600.jpg)'
+	      backgroundImage: 'url(https://image.freepik.com/free-vector/white-rhombus-pattern_1053-249.jpg',
+	      height: 1200
 	    };
 
 	    return _react2.default.createElement(
@@ -193,7 +189,7 @@
 	      { style: bodyStyle },
 	      _react2.default.createElement(
 	        "div",
-	        { className: "container", style: containerStyle },
+	        { className: "container" },
 	        _react2.default.createElement(
 	          "h1",
 	          null,

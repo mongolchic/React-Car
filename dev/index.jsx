@@ -117,18 +117,13 @@ var Car = React.createClass({
     };
 
     var bodyStyle = {
-      backgroundImage: 'url(http://eskipaper.com/images/toy-car-background-1.jpg)',
+      backgroundImage: 'url(https://image.freepik.com/free-vector/white-rhombus-pattern_1053-249.jpg',
       height: 1200,
-      opacity: 0.8
     };
-     var containerStyle = {
-       backgroundImage: 'url(http://www.findingtherainbow.net/wp-content/uploads/2015/06/light_blue_parchment_paper_background_1800x1600.jpg)',
-    };
-
 
     return (
       <div style={bodyStyle}>
-        <div className="container" style={containerStyle}>
+        <div className="container">
           <h1>Awesome Car Simulation App</h1>
           <hr/>
           <form onSubmit={this.onSubmit} onChange={this.onChange} value={this.state.carForm}>
