@@ -117,12 +117,12 @@ var Car = React.createClass({
     };
 
     var bodyStyle = {
-      backgroundImage: 'url(http://drivetosavelives.com/wp-content/uploads/2014/08/SummerDrivingTipsforTeens.jpg)',
-      height: 800,
+      backgroundImage: 'url(http://eskipaper.com/images/toy-car-background-1.jpg)',
+      height: 1200,
       opacity: 0.8
     };
      var containerStyle = {
-       backgroundImage: 'url(http://www.webdesigndev.com/wp-content/uploads/2013/06/Subtle-Grey-Tileable-Pattern.jpg)',
+       backgroundImage: 'url(http://www.findingtherainbow.net/wp-content/uploads/2015/06/light_blue_parchment_paper_background_1800x1600.jpg)',
     };
 
 
@@ -145,8 +145,8 @@ var Car = React.createClass({
           <hr/>
           <h3>Headlights: <Lights lightstatus={this.state.carLights}/></h3>
           <form>
-            On<input type="radio" style={buttonStyle} onChange={this.turnOn} value="On" name="Lights"/>
-            Off<input type="radio"  style={buttonStyle} onChange={this.turnOff} value="Off" name="Lights"/>
+            Turn On<input type="radio" style={buttonStyle} onChange={this.turnOn} value="On" name="Lights"/>
+            Turn Off<input type="radio"  style={buttonStyle} onChange={this.turnOff} value="Off" name="Lights"/>
             </form>
         </div>
       </div>
