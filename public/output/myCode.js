@@ -56,17 +56,20 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+	//Initializing Counter component
 	var Counter = _react2.default.createClass({
 	  displayName: "Counter",
 
 	  render: function render() {
 	    var textStyle = {
 	      fontSize: 48,
-	      fontFamily: "sans-serif",
+	      fontFamily: "Orbitron",
 	      color: "#333",
-	      fontWeight: "bold"
+	      fontWeight: "bold",
+	      margin: 20
 	    };
-
 	    return _react2.default.createElement(
 	      "div",
 	      { style: textStyle },
@@ -75,17 +78,18 @@
 	  }
 	});
 
+	//Initializing MyCar component
 	var MyCar = _react2.default.createClass({
 	  displayName: "MyCar",
 
 	  render: function render() {
 	    var carStyle = {
 	      fontSize: 36,
-	      fontFamily: "sans-serif",
+	      fontFamily: "Orbitron",
 	      color: "#333",
-	      fontWeight: "bold"
+	      fontWeight: "bold",
+	      margin: 20
 	    };
-
 	    return _react2.default.createElement(
 	      "div",
 	      { style: carStyle },
@@ -94,6 +98,7 @@
 	  }
 	});
 
+	//Initializing Lights component
 	var Lights = _react2.default.createClass({
 	  displayName: "Lights",
 
@@ -106,9 +111,11 @@
 	  }
 	});
 
+	//Initializing Car component
 	var Car = _react2.default.createClass({
 	  displayName: "Car",
 
+	  //Setting Initial State
 	  getInitialState: function getInitialState() {
 	    return {
 	      speed: 0,
@@ -118,17 +125,21 @@
 	    };
 	  },
 
+	  //When onChange event occurs, the value of the carForm element changes.
 	  onChange: function onChange(e) {
 	    this.setState({
 	      carForm: e.target.value
 	    });
 	  },
 
+	  //On buttonClick, the onSubmit event fires - rendering the value user input in the carInfo field.
 	  onSubmit: function onSubmit(e) {
+	    //Prevent following the link
 	    e.preventDefault();
 	    this.setState({ carForm: '', carInfo: this.state.carForm });
 	  },
 
+	  //Initializing Accelerate function
 	  increase: function increase(e) {
 	    if (this.state.speed < 120) {
 	      this.setState({
@@ -137,7 +148,9 @@
 	    }
 	  },
 
+	  //Initializing Brake function
 	  decrease: function decrease(e) {
+	    //if speed is less than 7, setState to 0.
 	    if (this.state.speed < 7) {
 	      this.setState({
 	        speed: this.state.speed = 0
@@ -149,26 +162,31 @@
 	    }
 	  },
 
+	  //Initializing Lights On function
 	  turnOn: function turnOn(e) {
 	    this.setState({ carLights: this.state.carLights = "On"
 	    });
 	  },
 
+	  //Initializing Lights Off function
 	  turnOff: function turnOff(e) {
 	    this.setState({ carLights: this.state.carLights = "Off"
 	    });
 	  },
 
+	  //render on DOM
 	  render: function render() {
-	    var buttonStyle = {
+	    var _buttonStyle;
+
+	    var buttonStyle = (_buttonStyle = {
 	      fontSize: "1em",
 	      width: 200,
 	      height: 30,
 	      fontFamily: "sans-serif",
 	      color: "#333",
 	      fontWeight: "bold",
-	      margin: 10
-	    };
+	      margin: 20
+	    }, _defineProperty(_buttonStyle, "fontFamily", "Orbitron"), _defineProperty(_buttonStyle, "textAlign", "center"), _buttonStyle);
 
 	    var formStyle = {
 	      width: 200,
@@ -176,12 +194,30 @@
 	      color: "#333",
 	      fontWeight: "bold",
 	      fontSize: 12,
-	      margin: 10
+	      margin: 20
 	    };
 
 	    var bodyStyle = {
-	      backgroundImage: 'url(https://image.freepik.com/free-vector/white-rhombus-pattern_1053-249.jpg',
-	      height: 1200
+	      backgroundColor: "#0C0915",
+	      height: "auto",
+	      fontFamily: "Orbitron",
+	      textAlign: "center",
+	      color: "white"
+	    };
+
+	    var contacStyle = {
+	      fontFamily: "Orbitron",
+	      textAlign: "center",
+	      fontSize: 24,
+	      margin: 40,
+	      color: "#7A59E2"
+	    };
+
+	    var headerStyle = {
+	      backgroundImage: "url(' http://www.vactualpapers.com/web/wallpapers/an-old-vintage-classic-black-car-automotive-hd-wallpaper/thumbnail/lg.jpg')",
+	      height: 600,
+	      backgroundSize: "cover",
+	      margin: 30
 	    };
 
 	    return _react2.default.createElement(
@@ -190,10 +226,11 @@
 	      _react2.default.createElement(
 	        "div",
 	        { className: "container" },
+	        _react2.default.createElement("div", { style: headerStyle }),
 	        _react2.default.createElement(
 	          "h1",
 	          null,
-	          "Awesome Car Simulation App"
+	          "Dream Car Simulation"
 	        ),
 	        _react2.default.createElement("hr", null),
 	        _react2.default.createElement(
@@ -246,12 +283,23 @@
 	          _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOn, value: "On", name: "Lights" }),
 	          "Turn Off",
 	          _react2.default.createElement("input", { type: "radio", style: buttonStyle, onChange: this.turnOff, value: "Off", name: "Lights" })
+	        ),
+	        _react2.default.createElement(
+	          "p",
+	          { style: contacStyle },
+	          "Are you ready to purchase your car? Please click ",
+	          _react2.default.createElement(
+	            "a",
+	            { href: "mailto:bulgan.batmagnai@gmail.com" },
+	            "here!"
+	          )
 	        )
 	      )
 	    );
 	  }
 	});
 
+	// Render an instance into document.body
 	_reactDom2.default.render(_react2.default.createElement(Car, null), document.querySelector("#container"));
 
 /***/ },
