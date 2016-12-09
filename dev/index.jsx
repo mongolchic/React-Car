@@ -160,7 +160,7 @@ var Car = React.createClass({
           <hr/>
             <form onSubmit={this.onSubmit} onChange={this.onChange}     value={this.state.carForm}>
               <input placeholder="Enter car model and make" style={formStyle}></input>
-              <button type="submit" style={buttonStyle}>Build My Car Car</button>
+              <button type="submit" style={buttonStyle}>Build My Car</button>
             </form>
             <h3>Your Car:</h3><MyCar carForm={this.state.carInfo} />
           <hr/>
